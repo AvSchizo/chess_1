@@ -1,5 +1,5 @@
 import pygame
-from circleSurface import circleSurface
+from piece_pygame_surfaces.circleSurface import circleSurface
 
 
 
@@ -8,12 +8,16 @@ def getPacks(prefs):
 	col = prefs[""]
 
 
-	packBlack = []
 	packWhite = []
+	packBlack = []
 
 	pack = []
 
 
 
-	packBlack.append([circleSurface(15*scale, prefs["black_piece"]), [0, 0]])
 	packWhite.append([circleSurface(15*scale, prefs["white_piece"]), [0, 0]])
+	packBlack.append([circleSurface(15*scale, prefs["black_piece"]), [0, 0]])
+
+
+
+	return packWhite, packBlack

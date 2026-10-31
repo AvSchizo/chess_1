@@ -1,52 +1,57 @@
-pieceCollection = {}
+def getCollection(prefs):
+	pieceCollection = {}
 
-# pawn #
-from piece_pygame_surfaces.pawn import getPacks as pawnPacks
+	# pawn #
+	from piece_pygame_surfaces.pawn import getPacks as pawnPacks
 
-pieceCollection[15], pieceCollection[25] = pawnPacks()
-#
-
-
-
-# rook #
-from piece_pygame_surfaces.pawn import packBlack, packWhite
-
-pieceCollection[14] = packWhite
-pieceCollection[24] = packBlack
-#
+	pieceCollection[15], pieceCollection[25] = pawnPacks(prefs)
+	#
 
 
 
-# knight #
-from piece_pygame_surfaces.pawn import packBlack, packWhite
+	# # rook #
+	# from piece_pygame_surfaces.pawn import packBlack, packWhite
 
-pieceCollection[13] = packWhite
-pieceCollection[23] = packBlack
-#
-
-
-
-# bishop #
-from piece_pygame_surfaces.pawn import packBlack, packWhite
-
-pieceCollection[12] = packWhite
-pieceCollection[22] = packBlack
-#
+	# pieceCollection[14] = packWhite
+	# pieceCollection[24] = packBlack
+	# #
 
 
 
-# king #
-from piece_pygame_surfaces.pawn import packBlack, packWhite
+	# # knight #
+	# from piece_pygame_surfaces.pawn import packBlack, packWhite
 
-pieceCollection[11] = packWhite
-pieceCollection[21] = packBlack
-#
+	# pieceCollection[13] = packWhite
+	# pieceCollection[23] = packBlack
+	# #
 
 
 
-# queen #
-from piece_pygame_surfaces.pawn import packBlack, packWhite
+	# # bishop #
+	# from piece_pygame_surfaces.pawn import packBlack, packWhite
 
-pieceCollection[10] = packWhite
-pieceCollection[20] = packBlack
-#
+	# pieceCollection[12] = packWhite
+	# pieceCollection[22] = packBlack
+	# #
+
+
+
+	# # king #
+	# from piece_pygame_surfaces.pawn import packBlack, packWhite
+
+	# pieceCollection[11] = packWhite
+	# pieceCollection[21] = packBlack
+	# #
+
+
+
+	# # queen #
+	# from piece_pygame_surfaces.pawn import packBlack, packWhite
+
+	# pieceCollection[10] = packWhite
+	# pieceCollection[20] = packBlack
+	# #
+
+
+
+	return pieceCollection

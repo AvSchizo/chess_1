@@ -1,12 +1,13 @@
 import pygame
 
 
-from importPieces import pieceCollection
+from importPieces import getCollection
 
 
 
 def drawPieces(prefs, scrn, state):
 	z = prefs["squareSize"]
+	pieceCollection = getCollection(prefs)
 
 	for a in range(4):
 
