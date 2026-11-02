@@ -1,28 +1,29 @@
 import pygame
 
 
-def drawBoard(prefs, scrn, state):
+def drawBoard(prefs, scrn, state, selected):
 	z = prefs["squareSize"]
 
-	for a in range(4):
+	for i in range(8):
 
-		for e in range(2):
+		for e in range(8):
 
-			for i in range(8):
-				place = [a*2+e, i]
+			surf = pygame.surface.Surface([z]*2)
+			if selected == None:
+				prof = [-1]*2
+			else:
+				prof = selected
 
-				surf = pygame.surface.Surface([z]*2)
+			if i == prof[0] and e== prof[1]:
+				surf.fill(prefs["moving_background"])
 
-				if int(state[place[0]][place[1]]/100) == 1:
-					surf.fill(prefs["moving_background"])
-
-				elif (i+e)%2 == 1:
-					surf.fill(prefs["black_background"])
-				else:
-					surf.fill(prefs["white_background"])
+			elif (i+e)%2 == 0:
+				surf.fill(prefs["black_background"])
+			else:
+				surf.fill(prefs["white_background"])
 
 
-				scrn.blit(surf, [i*z, (e*z+a*(z*2))])
+			scrn.blit(surf, [i*z, (7*z)-e*z])
 
 
 

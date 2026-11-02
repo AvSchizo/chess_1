@@ -1,56 +1,75 @@
 def getCollection(prefs):
 	pieceCollection = {}
 
-	# pawn #
-	from piece_pygame_surfaces.pawn import getPacks as pawnPacks
 
-	pieceCollection[15], pieceCollection[25] = pawnPacks(prefs)
-	#
+	if prefs["webMode"]:
 
+		# pawn #
+		from piece_pygame_surfaces.pawn import getPacks as pawn
 
-
-	# # rook #
-	# from piece_pygame_surfaces.pawn import packBlack, packWhite
-
-	# pieceCollection[14] = packWhite
-	# pieceCollection[24] = packBlack
-	# #
+		pieceCollection[15], pieceCollection[25] = pawn(prefs)
+		#
 
 
 
-	# # knight #
-	# from piece_pygame_surfaces.pawn import packBlack, packWhite
+		# # rook #
+		# from piece_pygame_surfaces.king import getPacks as rook
 
-	# pieceCollection[13] = packWhite
-	# pieceCollection[23] = packBlack
-	# #
-
-
-
-	# # bishop #
-	# from piece_pygame_surfaces.pawn import packBlack, packWhite
-
-	# pieceCollection[12] = packWhite
-	# pieceCollection[22] = packBlack
-	# #
+		# pieceCollection[14], pieceCollection[24] = rook(prefs)
+		# #
 
 
 
-	# # king #
-	# from piece_pygame_surfaces.pawn import packBlack, packWhite
+		# # knight #
+		# from piece_pygame_surfaces.king import getPacks as knight
 
-	# pieceCollection[11] = packWhite
-	# pieceCollection[21] = packBlack
-	# #
-
+		# pieceCollection[13], pieceCollection[23] = knight(prefs)
+		# #
 
 
-	# # queen #
-	# from piece_pygame_surfaces.pawn import packBlack, packWhite
 
-	# pieceCollection[10] = packWhite
-	# pieceCollection[20] = packBlack
-	# #
+		# # bishop #
+		# from piece_pygame_surfaces.king import getPacks as bishop
+
+		# pieceCollection[12], pieceCollection[22] = bishop(prefs)
+		# #
+
+
+
+		# king #
+		from piece_pygame_surfaces.king import getPacks as king
+
+		pieceCollection[11], pieceCollection[21] = king(prefs)
+		#
+
+
+
+		# # queen #
+		# from piece_pygame_surfaces.king import getPacks as queen
+
+		# pieceCollection[10], pieceCollection[20] = queen(prefs)
+		# #
+	
+
+
+	else:
+		import pygame
+		pygame.init()
+
+		scale = prefs["squareSize"]/50
+
+		def getSurf(name, t=None):
+			surf = pygame.image.load(f"piece_images/{name}").convert_alpha()
+			if t == None:
+				d = surf.get_width()/50
+			else:
+				d = t
+			surf.subsurface(surf.get_bounding_rect()).copy()
+			surf = pygame.transform.scale(surf, [surf.get_width()*d*scale, surf.get_height()*d*scale])
+			return surf
+
+		# pawn #
+		pieceCollection[15] = [[getSurf("pawn_white.png", .5), [0, 0]]]
 
 
 

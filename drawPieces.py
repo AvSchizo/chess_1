@@ -2,28 +2,35 @@ import pygame
 
 
 from importPieces import getCollection
+from piece_pygame_surfaces.circleSurface import circleSurface
 
 
 
-def drawPieces(prefs, scrn, state):
+def drawPieces(prefs, scrn, state, selected):
 	z = prefs["squareSize"]
 	pieceCollection = getCollection(prefs)
 
-	for a in range(4):
+	for i in range(8):
 
-		for e in range(2):
+		for e in range(8):
 			
 			start = z/2
-			for i in range(8):
-				place = [a*2+e, i]
-				la = state[place[0]][place[1]]
 
-				if (la in list(range(10, 15)) or la in list(range(20, 25))) and la in pieceCollection.keys():
-					
-					ref = pieceCollection[la]
+			la = state[i][e]
+
+			if (la in list(range(10, 16)) or la in list(range(20, 26))) and la in list(pieceCollection.keys()):
+
+				if selected[0] == None:
+					wherego = [start+i*z, (8*z-start)-(z*e)]
+				elif selected[0][0] == i and selected[0][1] == e:
+					wherego = selected[1]
+				else:
+					wherego = [start+i*z, (8*z-start)-(z*e)]
+				
+				for ref in pieceCollection[la]:
 
 					surf = ref[0]
 				
-					rect = surf.get_rect(center=[start+i*z+ref[1][0], start+(e*z+a*(z*2))-ref[1][1]])
+					rect = surf.get_rect(center=[wherego[0]+ref[1][0], wherego[1]-ref[1][1]])
 
 					scrn.blit(surf, rect)
