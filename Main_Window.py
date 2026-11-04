@@ -104,7 +104,7 @@ glos = {
 
 # personal
 pers = {
-	"side": 1,
+	"side": 2,
 	"selected": None,
 	"currentFrame": 0,
 	"inputs": [],
@@ -133,6 +133,11 @@ glos["board"] = [
 	[13,15,0,0,0,0,25,23],
 	[14,15,0,0,0,0,25,24],
 ]
+
+
+
+def updateBoard(side):
+	new = []
 
 
 
@@ -198,6 +203,7 @@ while True:
 	fop = pers["inputs"][pers["currentFrame"]-1]
 	foi = pers["inputs"][pers["currentFrame"]-2]
 
+
 	if fop[1][0] and not foi[1][0] and pers["board"][fop[0][0]][fop[0][1]] != 0:
 		# if clicking now but not previous frame
 		pers["selected"] = []
@@ -205,10 +211,17 @@ while True:
 			pers["selected"].append(fop[0][i])
 
 	elif not fop[1][0] and pers["selected"] != None:
-
 		# releasing
 
+		pers["board"][fop[0][0]][fop[0][1]] = pers["board"][pers["selected"][0][0]][pers["selected"][0][1]]
+		pers["board"][pers["selected"][0][0]][pers["selected"][0][1]] = 0
+
 		pers["selected"] = None
+
+
+		if pers["side"] == 1:
+			for i in range(8):
+				t
 
 
 

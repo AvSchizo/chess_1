@@ -44,11 +44,11 @@ def getCollection(prefs):
 
 
 
-		# # queen #
-		# from piece_pygame_surfaces.king import getPacks as queen
+		# queen #
+		from piece_pygame_surfaces.queen import getPacks as queen
 
-		# pieceCollection[10], pieceCollection[20] = queen(prefs)
-		# #
+		pieceCollection[10], pieceCollection[20] = queen(prefs)
+		#
 	
 
 
