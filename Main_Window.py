@@ -140,6 +140,20 @@ def updateBoard(side):
 	new = []
 
 
+	if pers["side"] == 1:
+		## white
+		for i in range(8):
+			new.append(pers["board"][i])
+
+	elif pers["side"] == 2:
+		## black
+		for i in range(8):
+			new.append(list(reversed(pers["board"][7-i])))
+
+
+	return new
+
+
 
 
 
@@ -213,15 +227,14 @@ while True:
 	elif not fop[1][0] and pers["selected"] != None:
 		# releasing
 
-		pers["board"][fop[0][0]][fop[0][1]] = pers["board"][pers["selected"][0][0]][pers["selected"][0][1]]
-		pers["board"][pers["selected"][0][0]][pers["selected"][0][1]] = 0
+		if [fop[0][0], fop[0][1]] != pers["selected"]:
+			pers["board"][fop[0][0]][fop[0][1]] = pers["board"][pers["selected"][0]][pers["selected"][1]]
+			pers["board"][pers["selected"][0]][pers["selected"][1]] = 0
+			glos["board"] = updateBoard(pers["side"])
 
 		pers["selected"] = None
 
 
-		if pers["side"] == 1:
-			for i in range(8):
-				t
 
 
 
