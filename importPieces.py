@@ -8,6 +8,8 @@ def getSurf(name, t=None):
 	surf = pygame.transform.scale(surf, [surf.get_width()*d*scale, surf.get_height()*d*scale])
 	return surf
 
+
+
 def getCollection(prefs):
 	pieceCollection = {}
 
