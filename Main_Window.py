@@ -26,17 +26,17 @@ defaultPreferences = {
 	"webMode": {
 		"pieces": [
 			# queen
-			1,
+			True,
 			# king
-			1,
+			True,
 			# bishop
-			1,
+			True,
 			# knight
-			1,
+			True,
 			# rook
-			1,
+			True,
 			# pawn
-			1,
+			True,
 		],
 	},
 }
