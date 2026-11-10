@@ -23,7 +23,22 @@ defaultPreferences = {
 	"black_piece_shadow": "#5c5957",
 	"squareSize": 100,
 	"pieceBorderColor": "black",
-	"webMode": True,
+	"webMode": {
+		"pieces": [
+			# queen
+			1,
+			# king
+			1,
+			# bishop
+			1,
+			# knight
+			1,
+			# rook
+			1,
+			# pawn
+			1,
+		],
+	},
 }
 
 verifyPreferences(defaultPreferences)
