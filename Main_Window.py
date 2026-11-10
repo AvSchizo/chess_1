@@ -115,12 +115,17 @@ from drawPieces import drawPieces
 
 # globals
 glos = {
-	"font": pygame.font.Font(None, 36),
+	"turn": 1,
+	# 0: anyone can move any piece that isn't empty
+	# 1: anyone can move only pieces for which color's turn it is
+	# 2: can move any piece that isn't empty, if it's such person's turn
+	# 3: can only move your pieces on your turn (regular chess)
+	"turnSharp": 1,
 }
 
 # personal
 pers = {
-	"side": 2,
+	"side": 1,
 	"selected": None,
 	"currentFrame": 0,
 	"inputs": [],
@@ -168,6 +173,29 @@ def updateBoard(side):
 
 
 	return new
+
+
+
+
+
+
+
+
+def checkValidMove(s, l, b):
+
+	p = b[s[0]][s[1]]
+
+	if int(str(p)[-1]) == 0 :
+		print('poopy')
+	
+	return True
+
+
+
+
+
+
+
 
 
 
@@ -234,19 +262,47 @@ while True:
 	foi = pers["inputs"][pers["currentFrame"]-2]
 
 
-	if fop[1][0] and not foi[1][0] and pers["board"][fop[0][0]][fop[0][1]] != 0:
+
+	if fop[1][0] and not foi[1][0]:
 		# if clicking now but not previous frame
-		pers["selected"] = []
-		for i in range(2):
-			pers["selected"].append(fop[0][i])
+
+		bPiece = pers["board"][fop[0][0]][fop[0][1]]
+		if bPiece != 0:
+			# if clicking a valid square
+
+			clickable = False
+
+			ts = glos["turnSharp"]
+			if ts == 0:
+				clickable = True
+			if ts == 1 and int(bPiece/10)%2 == glos["turn"]%2:
+				clickable = True
+			if ts == 2 and pers["side"]%2 == (glos["turn"])%2:
+				clickable = True
+			if ts == 3 and pers["side"]%2 == (glos["turn"])%2 and int(bPiece/10)%2 == glos["turn"]%2:
+				clickable = True
+			
+
+			if clickable:
+				pers["selected"] = []
+				for i in range(2):
+					pers["selected"].append(fop[0][i])
+
+
+
 
 	elif not fop[1][0] and pers["selected"] != None:
 		# releasing
 
-		if [fop[0][0], fop[0][1]] != pers["selected"]:
+		if [fop[0][0], fop[0][1]] != pers["selected"] and checkValidMove(pers["selected"], [fop[0][0], fop[0][1]], pers["board"]):
+			# not on same square
+
 			pers["board"][fop[0][0]][fop[0][1]] = pers["board"][pers["selected"][0]][pers["selected"][1]]
 			pers["board"][pers["selected"][0]][pers["selected"][1]] = 0
 			glos["board"] = updateBoard(pers["side"])
+
+			glos["turn"] += 1
+
 
 		pers["selected"] = None
 
