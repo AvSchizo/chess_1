@@ -24,7 +24,7 @@ def getPacks(prefs):
 	packs = [[], []]
 
 
-	font = pygame.font.Font(prefs["defaultFont"], scale*30)
+	font = pygame.font.Font(prefs["defaultFont"], int(scale*30))
 
 
 
@@ -33,7 +33,7 @@ def getPacks(prefs):
 
 
 	for i in range(2):
-		packs[i].append(font.render(f"{i+1}3", True, "black"))
+		packs[i].append([font.render(f"{i+1}3", True, "black"), [scale*0, scale*0]])
 
 
 
