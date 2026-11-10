@@ -39,6 +39,7 @@ defaultPreferences = {
 			True,
 		],
 	},
+	"defaultFont": None,
 }
 
 verifyPreferences(defaultPreferences)
